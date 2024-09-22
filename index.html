@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #fcdaf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+h1{
+    color:#0011ff;
+    text-align: center;
+}
+.quiz-container {
+    background-color: #bbffb7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #f54444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+button:hover {
+    background-color: #218838;
+    font-size: 150%;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+footer{
+    background-color: #bc00ec;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+        <hr><br>
+        <form id="quizForm">
+            <div class="question">
+                <label for="q1">1. Who is Founder Of HTML? * (1 marks)</label><br>
+                <input type="radio" name="q1" value="James Gosling"> James Gosling<br>
+                <input type="radio" name="q1" value="Tim Berners-Lee"> Tim Berners-Lee<br>
+                <input type="radio" name="q1" value="Elon musk"> Elon musk<br>
+            </div>
+
+            <div class="question">
+                <label for="q2">2. What is 2 + 2? * (1 marks)</label><br>
+                <input type="radio" name="q2" value="3"> 3<br>
+                <input type="radio" name="q2" value="4"> 4<br>
+                <input type="radio" name="q2" value="5"> 5<br>
+            </div>
+
+            <button type="button" onclick="submitQuiz()">Submit</button>
+            <hr>
+            
+        </form>
+        <div id="result"></div><br>
+        <footer> © Yakshit Koshiya</footer>
+    </div>
+    
+
+    <script >
+        function submitQuiz() {
+    let score = 0;
+    let totalQuestions = 2;
+
+    // Question 1
+    let q1Answer = document.querySelector('input[name="q1"]:checked');
+    if (q1Answer && q1Answer.value === "Tim Berners-Lee") {
+        score++;
+    }
+
+    // Question 2
+    let q2Answer = document.querySelector('input[name="q2"]:checked');
+    if (q2Answer && q2Answer.value === "4") {
+        score++;
+    }
+
+    let resultDiv = document.getElementById("result");
+    let wrongAnswers = totalQuestions - score;
+
+    //
+     resultDiv.innerHTML = `You got ${score}/2 correct`;
+    if(score===2)
+    {
+        resultDiv.innerHTML = ` Congratulation , You got ${score}/2 correct Answer`;
+    }
+    else if(score===1){
+        resultDiv.innerHTML = `You are soo close!!! ,you got ${score}/2 correct`;
+
+    }
+    else{
+        resultDiv.innerHTML = `uhh!! , You got ${score}/2 correct , you have to do more Preparation`;
+    }
+}
+
+    </script>
+</body>
+</html>
